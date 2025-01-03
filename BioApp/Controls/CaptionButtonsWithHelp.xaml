@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="BioApp.CaptionButtonsWithHelp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BioApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyToolTipStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="{Binding Path=CaptionButtonMargin}">
+        <local:HelpButton Cursor="Hand" >
+            <local:HelpButton.ToolTip>
+                <ToolTip Style="{StaticResource FancyToolTip}">
+                    Get Help
+                </ToolTip>
+            </local:HelpButton.ToolTip>
+        </local:HelpButton>
+        <local:MinimizeButton Cursor="Hand"  CornerRadius="0">
+            <local:MinimizeButton.ToolTip>
+                <ToolTip Style="{StaticResource FancyToolTip}">
+                    Minimize window
+                </ToolTip>
+            </local:MinimizeButton.ToolTip>
+        </local:MinimizeButton>
+        <local:MaximizeButton Cursor="Hand" >
+            <local:MaximizeButton.ToolTip>
+                <ToolTip Style="{StaticResource FancyToolTip}">
+                    Restore window
+                </ToolTip>
+            </local:MaximizeButton.ToolTip>
+        </local:MaximizeButton>
+        <local:CloseButton Cursor="Hand" >
+            <local:CloseButton.ToolTip>
+                <ToolTip Style="{StaticResource FancyToolTip}">
+                    Exit Application
+                </ToolTip>
+            </local:CloseButton.ToolTip>
+        </local:CloseButton>
+    </StackPanel>
+</UserControl>

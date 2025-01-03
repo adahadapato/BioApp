@@ -1,0 +1,142 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BioApp.Resources">
+
+    <Style x:Key="FancyToolTip" TargetType="ToolTip">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border CornerRadius="7" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="5" BorderThickness="3,3,3,3" >
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                               <!-- <GradientStop Color="#CF181818" Offset="0"/>
+                                <GradientStop Color="#BE1C1C1C" Offset="1"/>-->
+                                <GradientStop Color="#CF071818" Offset="0"/>
+                                <GradientStop Color="#BE1C1C1C" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <!--<Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#80FFFFFF" Offset="0"/>
+                                    <GradientStop Color="#7FFFFFFF" Offset="1"/>
+                                    <GradientStop Color="#FFFFF18D" Offset="0.344"/>
+                                    <GradientStop Color="#FFFFF4AB" Offset="0.647"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*" />
+                                <ColumnDefinition Width="0.9*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="/BioApp;component/Images/small_info_icon.png" Grid.Row="0" Grid.RowSpan="2" 
+                                   Grid.Column="0" Margin="3,0,3,0" Width="26" Height="26"  />
+                            <TextBlock FontFamily="Lato" Grid.Row="0" Grid.Column="1" FontSize="11" FontStyle="Italic" 
+                                       Text="idenysis" Foreground="#5095D6" Margin="0,0,10,0" />
+                            <!--<TextBlock FontFamily="Lato" Grid.Row="0" Grid.Column="1" FontSize="8" FontStyle="Italic" 
+                                       Text="-data capture-" Foreground="#F5F5F5" Margin="6,0,10,0" />-->
+                            <TextBlock FontFamily="Lato" Grid.Row="1" Grid.Column="1" FontSize="10" Text="{TemplateBinding Content}" 
+                                       Foreground="#FFFFFFFF" Margin="0,5,3,0" MaxWidth="200"  TextWrapping="Wrap" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="FancyToolTip2" TargetType="ToolTip">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="FontFamily" Value="Tahoma"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Foreground" Value="{StaticResource fillBrush}"/>
+        <Setter Property="Opacity" Value="0.95"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border Name="Border"
+            Background="{StaticResource sliderBrush}"
+            BorderBrush="{StaticResource menuBorderBrush}"
+            BorderThickness="1"
+            Width="{TemplateBinding Width}"
+            Height="{TemplateBinding Height}">
+                        <ContentPresenter
+              Margin="2"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasDropShadow" Value="true">
+                            <Setter TargetName="Border" Property="CornerRadius" Value="0"/>
+                            <Setter TargetName="Border" Property="SnapsToDevicePixels" Value="true"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <LinearGradientBrush x:Key="LightBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FFF" Offset="0.0"/>
+                <GradientStop Color="#EEE" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="SolidBorderBrush" Color="#888" />
+
+    <Style x:Key="BubbleToolTip" TargetType="ToolTip">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="HorizontalOffset" Value="-50" />
+        <Setter Property="VerticalOffset" Value="0" />
+        <Setter Property="Background" Value="#BE1C1C1C" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Canvas Width="200" Height="100">
+
+                        <Path x:Name="Container"
+                  Canvas.Left="0"
+                  Canvas.Top="0"                                 
+                  Margin="0"
+                  Data="M 50,10 L60,0 L70,10 L200,10 L200,100 L0,100 L0,10 L50,10"                                 
+                  Stroke="Black">
+                            <Path.Effect>
+                                <DropShadowEffect BlurRadius="10"
+                                      Opacity="0.5"
+                                      ShadowDepth="4" />
+                            </Path.Effect>
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#CF181818" Offset="0"/>
+                                    <GradientStop Color="#BE1C1C1C" Offset="1"/>
+                                </LinearGradientBrush>
+
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock Canvas.Left="50"
+                       Canvas.Top="28"
+                       Width="100"
+                       Height="65"
+                       Text="{TemplateBinding Content}"
+                       TextWrapping="Wrapwithoverflow" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

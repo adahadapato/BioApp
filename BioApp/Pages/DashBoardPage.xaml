@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="BioApp.Pages.DashBoardPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:dv="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:dvc="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BioApp.Pages"
+             Height="600" Width="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--<local:CaptionButtonRectToMarginConverter x:Key="CaptionButtonMarginConverter"/>-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyPrimaryGridStyle.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+            <Style
+    x:Key="ColorByPreferenceLegendItem"
+    TargetType="dvc:LegendItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="dvc:LegendItem">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                        Width="8" Height="8"
+                        Fill="{Binding DataContext.FavoriteColor}"
+                        Stroke="{Binding BorderBrush}"
+                        StrokeThickness="1" Margin="0,0,3,0"/>
+                                <!--<datavis:Title Content="{TemplateBinding Content}"/>-->
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource FancyPrimaryGrid}">
+        <Grid  Margin="4">
+            <dvc:Chart  Name="barChart" 
+                        Title="" 
+                		VerticalAlignment="Stretch" 
+                        BorderBrush="Transparent"
+                        Background="Transparent"
+                       
+                        HorizontalAlignment="Stretch">
+                <dvc:Chart.PlotAreaStyle>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                </dvc:Chart.PlotAreaStyle>
+                <dvc:ColumnSeries DependentValuePath="Value" 
+                                  Title=""
+                                  IndependentValuePath="Key" 
+                                  BorderBrush="Transparent"
+                                  Background="Transparent"
+                                  IsSelectionEnabled="True" >
+                    <dvc:ColumnSeries.DataPointStyle>
+                        <Style x:Name="colorStyle" TargetType="Control">
+                            <Setter Property="BorderBrush" Value="Green"/>
+                            <Setter Property="Background" Value="Green"/>
+                        </Style>
+                    </dvc:ColumnSeries.DataPointStyle>
+                    
+                </dvc:ColumnSeries>
+            </dvc:Chart>
+        </Grid>
+    </Grid>
+</UserControl>

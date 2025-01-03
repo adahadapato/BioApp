@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="BioApp.Pages.OnlineOperatorListPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:BioApp.Pages"
+             Loaded="UserControl_Loaded"
+             Height="500" Width="1000">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/BioApp;component/Resources/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyPrimaryGridStyle.xaml" />
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyListViewStyle.xaml" />
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyCheckBoxStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource FancyPrimaryGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Margin="5,0">
+            <xctk:WatermarkTextBox x:Name="txtsearch" 
+                                   HorizontalAlignment="Left" 
+                                   Margin="0,22,0,0" 
+                                   TextWrapping="Wrap" 
+                                   Text="" 
+                                   VerticalAlignment="Top" 
+                                   Width="358" 
+                                   Height="26" 
+                                   Watermark="Search" 
+                                   TextChanged="txtsearch_TextChanged" 
+                                   CharacterCasing="Upper"/>
+            <Button Name="btnRefresh" 
+                    Click="btnRefresh_Click" 
+                    Style="{StaticResource AButtonStyle}" 
+                    Content="Refresh"
+                    ToolTip="Click to refresh list" 
+                    Margin="690,19,2,1"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <ListView x:Name="lv" 
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch" 
+                      AlternationCount="2" 
+                      Margin="0,0"
+                      Padding="0,2,0,0" 
+                      ItemContainerStyle="{StaticResource alternatingStyleNoToolTip2}"
+                      SelectionChanged="lv_SelectionChanged">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    </Style>
+                </ListView.Resources>
+
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn  Width="60">
+                            <GridViewColumn.Header>
+                                <CheckBox Name="chkSelectAll" 
+                                          Style="{StaticResource FancyCheckBox}" 
+                                          HorizontalAlignment="Left" 
+                                          VerticalAlignment="Center" 
+                                          Checked="chkSelectAll_Checked"  
+                                          Unchecked="chkSelectAll_Unchecked" 
+                                          IsThreeState="False" 
+                                          Content="All" 
+                                          IsChecked="False"
+                                          Foreground="#ffffff" 
+                                          HorizontalContentAlignment="Center" 
+                                          VerticalContentAlignment="Bottom"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Name="chkSelect" 
+                                              IsChecked="{Binding Path=IsSelected}" 
+                                              HorizontalContentAlignment="Center"  
+                                              HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" 
+                                              Checked="chkSelect_Checked"  
+                                              Unchecked="chkSelect_Unchecked"  
+                                              IsThreeState="False"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Operator Id" Width="120" DisplayMemberBinding="{Binding operatorId}" />
+                        <GridViewColumn Header="Cafe" Width="350" DisplayMemberBinding="{Binding cafeName}" />
+                        <GridViewColumn Header="State" Width="90" DisplayMemberBinding="{Binding state}" />
+                        <GridViewColumn Header="E-Mail" Width="160" DisplayMemberBinding="{Binding email}" />
+                        <GridViewColumn Header="Phone" Width="100" DisplayMemberBinding="{Binding phoneno}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="2" Margin="5,0">
+            <TextBlock x:Name="txtmsg" 
+                       Text="" 
+                       TextWrapping="Wrap" 
+                       Foreground="#ffffff" 
+                       FontWeight="Bold"
+                       TextAlignment="Left" 
+                       Margin="21,3,511,19"/>
+        </Grid>
+    </Grid>
+</UserControl>

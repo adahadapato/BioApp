@@ -1,0 +1,118 @@
+﻿<Window x:Class="BioApp.OperatorBankDetailsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:BioApp"
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized" 
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Loaded="Window_Loaded"
+        Height="400" 
+        Width="600">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/BioApp;component/Resources/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyPrimaryGridStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Style="{StaticResource FancyPrimaryGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10" Grid.Row="0">
+            <TextBlock HorizontalAlignment="Center" 
+                       FontSize="18"
+                       Text="PROVIDE PAYMENT DETAILS" 
+                       VerticalAlignment="Center" 
+                       FontFamily="Lato Heavy" 
+                       FontWeight="ExtraBold" 
+                       Foreground="#0e6251" 
+                       Margin="167,68,168,231" Width="245"/>
+            <xctk:WatermarkComboBox Name="cmbBankName" 
+                                    Watermark="Bank Name"
+                                    Width="350"
+                                    Height="30"
+                                    FontSize="16"
+                                    DropDownClosed="cmbBankName_DropDownClosed"
+                                    Margin="115,94,115,196"/>
+
+            <xctk:WatermarkTextBox Name="txtBankAddress" 
+                                   Watermark="Bank Address"
+                                   FontSize="16"
+                                   Height="30"
+                                   Width="350"
+                                   CharacterCasing="Upper"
+                                   Margin="115,128,115,162"/>
+
+            <xctk:WatermarkTextBox Name="txtSortCode" 
+                                   Watermark="Sort Code"
+                                   MaxLength="9" 
+                                   FontSize="16"
+                                   Width="150"
+                                   Height="30"
+                                   VerticalAlignment="Stretch"
+                                   PreviewTextInput="TextBox_PreviewTextInput"
+                                   Margin="115,164,315,126"/>
+
+            <xctk:WatermarkTextBox Name="txtAccountNo" 
+                                   Watermark="Account No"
+                                   MaxLength="10" 
+                                   FontSize="16"
+                                   Width="150"
+                                   Height="30"
+                                   VerticalAlignment="Stretch"
+                                   PreviewTextInput="TextBox_PreviewTextInput"
+                                   Margin="115,197,315,93"/>
+
+
+            <xctk:WatermarkTextBox Name="txtAccountName" 
+                                   Watermark="Account Name"
+                                   FontSize="16"
+                                   Height="30"
+                                   Width="350"
+                                   CharacterCasing="Upper"
+                                   Margin="115,231,115,59"/>
+
+            <Button Name="btnSave" 
+                        Content="Save" 
+                        Margin="115,265,295,10" 
+                        Width="170"
+                        Height="45"  
+                        FontSize="18" 
+                        Style="{StaticResource AButtonStyle}"     
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Stretch"  
+                        VerticalContentAlignment="Center" 
+                        HorizontalContentAlignment="Center" 
+                        Click="btnSave_Click" />
+            <Button Name="btnCancel" 
+                        Content="Cancel" 
+                        Margin="295,265,115,10" 
+                        Width="170"
+                        Height="45"  
+                        FontSize="18" 
+                        Style="{StaticResource AButtonStyle}"     
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Stretch"  
+                        VerticalContentAlignment="Center" 
+                        HorizontalContentAlignment="Center" 
+                        Click="btnCancel_Click" />
+
+        </Grid>
+        <Grid Grid.Row="1"  
+              Margin="0,0,0,27" >
+            <TextBlock x:Name="txtmsg" 
+                       Text="Candidate Name" 
+                       Margin="1,1,1,8" 
+                       TextWrapping="Wrap" 
+                       Foreground="#ffffff" 
+                       TextAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>

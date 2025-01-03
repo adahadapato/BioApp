@@ -1,0 +1,126 @@
+﻿<UserControl x:Class="BioApp.Pages.TotalUploadSummaryPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:BioApp.Pages"
+             Loaded="UserControl_Loaded"
+             Height="500" Width="1000">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/BioApp;component/Resources/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyPrimaryGridStyle.xaml" />
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyListViewStyle.xaml" />
+                <ResourceDictionary Source="/BioApp;component/Resources/FancyRadioButtonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Style="{StaticResource FancyPrimaryGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=" 300"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <!-- Column one -->
+        <Grid Grid.Column="0" 
+              Grid.Row="0" 
+              Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+        </Grid>
+        <!-- Column two -->
+        <Grid Grid.Row="0" Grid.Column="1" Margin="5,0">
+            <xctk:WatermarkTextBox x:Name="txtsearch" 
+                                   HorizontalAlignment="Left" 
+                                   Margin="2,22,0,0" 
+                                   TextWrapping="Wrap" 
+                                   Text="" 
+                                   VerticalAlignment="Top" 
+                                   Width="243" 
+                                   Height="26" 
+                                   Watermark="Search" 
+                                   TextChanged="txtsearch_TextChanged" 
+                                   CharacterCasing="Upper"/>
+            <Button Name="btnRefresh" 
+                    Click="btnRefresh_Click" 
+                    Style="{StaticResource AButtonStyle}" 
+                    Content="Refresh"
+                    ToolTip="Click to refresh list" 
+                    Margin="559,19,5,1" 
+                    Width="Auto" >
+               
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Margin="5">
+            <ListView x:Name="lv" 
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch" 
+                      SelectionChanged="lv_SelectionChanged"
+                      AlternationCount="2" 
+                      Margin="0,0"
+                      Padding="0,2,0,0" 
+                      ItemContainerStyle="{StaticResource alternatingStyleNoToolTip2}">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    </Style>
+                </ListView.Resources>
+
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource CustomHeaderStyle}">
+                        <GridViewColumn  Width="40">
+                            <GridViewColumn.Header>
+                                <RadioButton Name="chkSelectAll" 
+                                          Style="{StaticResource FancyRadioButton}" 
+                                          HorizontalAlignment="Left" 
+                                          VerticalAlignment="Center" 
+                                          IsThreeState="False" 
+                                          Content="" 
+                                          IsChecked="True"
+                                          Foreground="#ffffff" 
+                                          HorizontalContentAlignment="Center" 
+                                          VerticalContentAlignment="Bottom"/>
+                            </GridViewColumn.Header>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <RadioButton Name="chkSelect" 
+                                                 IsChecked="{Binding Path=IsSelected}" 
+                                                 HorizontalContentAlignment="Center"  
+                                                 Checked="chkSelect_Checked"
+                                                 Unchecked="chkSelect_Unchecked"
+                                                 GroupName="lv_Check"
+                                                 HorizontalAlignment="Center" 
+                                                 VerticalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Operator Id" Width="140" DisplayMemberBinding="{Binding operatorId}" />
+                        <GridViewColumn Header="Cafe" Width="375" DisplayMemberBinding="{Binding cafe}" />
+                        <GridViewColumn Header="Total" Width="120" DisplayMemberBinding="{Binding total}" />
+                        <!--<GridViewColumn Header="E-Mail" Width="160" DisplayMemberBinding="{Binding email}" />
+                        <GridViewColumn Header="Phone" Width="100" DisplayMemberBinding="{Binding phoneno}" />-->
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1" Margin="5,0">
+            <TextBlock x:Name="txtmsg" 
+                       Text="" 
+                       TextWrapping="Wrap" 
+                       Foreground="#ffffff" 
+                       FontWeight="Bold"
+                       TextAlignment="Left" 
+                       Margin="21,3,271,10"/>
+        </Grid>
+    </Grid>
+</UserControl>
